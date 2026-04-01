@@ -2,6 +2,11 @@ from flask import Flask, request, jsonify
 from models import db, Team
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return jsonify({"message": "API is running!"})
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///teams.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
@@ -10,15 +15,15 @@ with app.app_context():
     db.create_all()
     if Team.query.count() == 0:
         teams_data = [
-            Team(name="India", captain="Sohel Ali", ranking=1),
-            Team(name="Australia", captain="Pat Cummins", ranking=2),
-            Team(name="South Africa", captain="Temba Bavuma", ranking=3),
-            Team(name="West Indies", captain="Shai Hope", ranking=4),
-            Team(name="New Zealand", captain="Kane Williamson", ranking=5),
-            Team(name="England", captain="Jos Buttler", ranking=6),
-            Team(name="Pakistan", captain="Babar Azam", ranking=7),
-            Team(name="Bangladesh", captain="Shakib Al Hasan", ranking=8),
-            Team(name="Sri Lanka", captain="Dasun Shanaka", ranking=9),
+            Team(name="India", captain="STQA Exam", ranking=1),
+            Team(name="Australia", captain="STQA Exam", ranking=2),
+            Team(name="South Africa", captain="STQA Exam", ranking=3),
+            Team(name="West Indies", captain="STQA Exam", ranking=4),
+            Team(name="New Zealand", captain="STQA Exam", ranking=5),
+            Team(name="England", captain="STQA Exam", ranking=6),
+            Team(name="Pakistan", captain="STQA Exam", ranking=7),
+            Team(name="Bangladesh", captain="STQA Exam", ranking=8),
+            Team(name="Sri Lanka", captain="STQA Exam", ranking=9),
         ]
         db.session.bulk_save_objects(teams_data)
         db.session.commit()
